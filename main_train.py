@@ -1509,39 +1509,39 @@ def main():
         "--dataset",
         type=str,
         default="a_share_sz000001",
-        help="指定运行的目标市场，支持逗号分隔多个或'all'。"
+        help="Target market dataset. Comma-separated or 'all'."
     )
     parser.add_argument(
         "--gpu",
         type=int,
         default=0,
-        help="指定使用的 GPU 卡号"
+        help="GPU device index."
     )
     parser.add_argument(
         "--mode",
         type=str,
         default="our",
-        help="运行模式。支持单个、英文逗号分隔的多个模式 or 'all'"
+        help="Run mode. Single, comma-separated, or 'all'."
     )
     parser.add_argument(
         "--seeds",
         type=str,
         default="0,1,2,3,4",
-        help="指定运行的学术随机种子，用英文逗号隔开"
+        help="Random seeds, comma-separated (e.g. 0,1,2,3,4)."
     )
     parser.add_argument(
         "--fast",
         action="store_true",
-        help="开启极速调参模式"
+        help="Enable fast tuning mode (fewer steps)."
     )
     parser.add_argument(
         "--force",
         action="store_true",
-        help="忽略已有的历史运行和模型文件，强制重新训练和跑数"
+        help="Force re-training, ignoring existing checkpoints."
     )
-    parser.add_argument("--lr", type=float, default=None, help="覆盖全局学习率LR")
-    parser.add_argument("--kl_coef", type=float, default=None, help="覆盖DIB的KL系数")
-    parser.add_argument("--alpha", type=float, default=None, help="覆盖SAC熵系数ALPHA_0")
+    parser.add_argument("--lr", type=float, default=None, help="Override global learning rate.")
+    parser.add_argument("--kl_coef", type=float, default=None, help="Override DIB KL coefficient.")
+    parser.add_argument("--alpha", type=float, default=None, help="Override SAC entropy coefficient alpha.")
     args = parser.parse_args()
 
     # 命令行覆盖全局超参数

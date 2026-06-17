@@ -1318,20 +1318,20 @@ def main():
                  "binance_low_vol", "binance_high_vol",
                  "trades_lob_tsla", "trades_lob_intc",
                  "a_share_sz000001", "a_share_sz000651", "a_share_sz002415", "a_share_sz300147"],
-        help="指定运行的目标市场。默认 'a_share_sz000001'。"
+        help="Target market dataset. Default: 'a_share_sz000001'."
     )
     parser.add_argument(
         "--gpu",
         type=int,
         default=0,
-        help="指定使用的 GPU 卡号"
+        help="GPU device index."
     )
     parser.add_argument(
         "--mode",
         type=str,
         default="our",
         choices=["our", "as", "ho_stoll", "ppo", "sac", "hrl", "mappo", "deeplob", "timesfm", "moment", "timer_xl"],
-        help="运行模式"
+        help="Run mode."
     )
     args = parser.parse_args()
 
@@ -1340,7 +1340,7 @@ def main():
         device = torch.device(f"cuda:{gpu_id}")
         # 在主程序 GPU 卡号重定向后，延迟执行网络模块向指定 CUDA 设备的迁移绑定，确保完全避开CPU/GPU跨设备通信开销
         torch.cuda.set_device(device)
-    print(f"当前运行激活设备 (Device): {device} | 运行模式: 【{args.mode.upper()}】")
+    print(f"Device: {device} | Mode: {args.mode.upper()}")
 
     all_datasets = [
         "fi2010",
